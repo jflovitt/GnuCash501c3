@@ -68,6 +68,7 @@ add_engine_test(test-business test-business.c)
 add_engine_test(test-address test-address.c)
 add_engine_test(test-customer test-customer.c)
 add_engine_test(test-employee test-employee.c)
+add_engine_test(test-donor test-donor.c)
 add_engine_test(test-job test-job.c)
 add_engine_test(test-vendor test-vendor.c)
 
@@ -227,6 +228,7 @@ set(test_engine_SOURCES_DIST
         test-commodities.cpp
         test-customer.c
         test-employee.c
+        test-donor.c
         test-engine-kvp-properties.c
         test-engine.c
         test-gnc-date.c

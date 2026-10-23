@@ -34,6 +34,7 @@
 #include "gncCustomerP.h"
 #include "gncJobP.h"
 #include "gncEmployeeP.h"
+#include "gncDonorP.h"
 #include "gncVendorP.h"
 #include <cstdlib>
 #include <cstring>
@@ -147,6 +148,23 @@ GncSqlColumnTableEntryImpl<CT_OWNERREF>::load (const GncSqlBackend* sql_be,
         break;
     }
 
+    case GNC_OWNER_DONOR:
+    {
+        GncDonor* donor = NULL;
+
+        if (pGuid != NULL)
+        {
+            donor = gncDonorLookup (book, pGuid);
+            if (donor == NULL)
+            {
+                donor = gncDonorCreate (book);
+                gncDonorSetGUID (donor, &guid);
+            }
+        }
+        gncOwnerInitDonor (&owner, donor);
+        break;
+    }
+
     default:
         PWARN ("Invalid owner type: %d\n", type);
     }
@@ -203,6 +221,10 @@ GncSqlColumnTableEntryImpl<CT_OWNERREF>::add_to_query(QofIdTypeConst obj_name,
 
         case GNC_OWNER_EMPLOYEE:
             inst = QOF_INSTANCE (gncOwnerGetEmployee (owner));
+            break;
+
+        case GNC_OWNER_DONOR:
+            inst = QOF_INSTANCE (gncOwnerGetDonor (owner));
             break;
 
         default:

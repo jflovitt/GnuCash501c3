@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gnc-account-example 
+  xmlns="http://www.gnucash.org/XML/"
+  xmlns:act="http://www.gnucash.org/XML/act"
+  xmlns:cmdty="http://www.gnucash.org/XML/cmdty"
+  xmlns:gnc="http://www.gnucash.org/XML/gnc"
+  xmlns:gnc-act="http://www.gnucash.org/XML/gnc-act"
+  xmlns:slot="http://www.gnucash.org/XML/slot">
+
+<gnc-act:title>
+  US 501(c)(3) Nonprofit
+</gnc-act:title>
+<gnc-act:short-description>
+  Chart of accounts for a US 501(c)(3) filing Form 990, with restricted net assets.
+</gnc-act:short-description>
+<gnc-act:long-description>
+  Starter accounts for a US tax-exempt nonprofit: contribution income by restriction class, net assets without/with donor restrictions, and functional expenses (program, management, fundraising) oriented toward Form 990 Parts VIII–X. Pair with the Donor business type for multi-donor tracking and Schedule B–style large-contributor reports. Not a substitute for CPA guidance.
+</gnc-act:long-description>
+<gnc-act:exclude-from-select-all>1</gnc-act:exclude-from-select-all>
+
+<gnc:account version="2.0.0">
+  <act:name>Root Account</act:name>
+  <act:id type="new">c79718558a9843d69435bf77cd60e224</act:id>
+  <act:type>ROOT</act:type>
+  <act:commodity-scu>0</act:commodity-scu>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Assets</act:name>
+  <act:id type="new">5c59ac1e72f74438987321f81e25ba28</act:id>
+  <act:type>ASSET</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Assets</act:description>
+  <act:parent type="new">c79718558a9843d69435bf77cd60e224</act:parent>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Current Assets</act:name>
+  <act:id type="new">001952dd0476479cbc4a9429ba23ed57</act:id>
+  <act:type>ASSET</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Current Assets</act:description>
+  <act:parent type="new">5c59ac1e72f74438987321f81e25ba28</act:parent>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Checking Account</act:name>
+  <act:id type="new">77f531c1aa5a4024b485cbbd9ce71531</act:id>
+  <act:type>BANK</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Primary operating checking</act:description>
+  <act:parent type="new">001952dd0476479cbc4a9429ba23ed57</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Savings Account</act:name>
+  <act:id type="new">5fcc5d85fe434be0b30a58c904bfce2a</act:id>
+  <act:type>BANK</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Savings / reserves</act:description>
+  <act:parent type="new">001952dd0476479cbc4a9429ba23ed57</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Pledges Receivable</act:name>
+  <act:id type="new">ed8a9226e42c434280904abed5b93407</act:id>
+  <act:type>RECEIVABLE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Unconditional pledges receivable</act:description>
+  <act:parent type="new">001952dd0476479cbc4a9429ba23ed57</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Liabilities</act:name>
+  <act:id type="new">3f7c626cffe54fc0b8c52d6dce46c68e</act:id>
+  <act:type>LIABILITY</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Liabilities</act:description>
+  <act:parent type="new">c79718558a9843d69435bf77cd60e224</act:parent>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Current Liabilities</act:name>
+  <act:id type="new">0ffc089ab128441e9cd1bd301a6868e7</act:id>
+  <act:type>LIABILITY</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Current Liabilities</act:description>
+  <act:parent type="new">3f7c626cffe54fc0b8c52d6dce46c68e</act:parent>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Accounts Payable</act:name>
+  <act:id type="new">cbbf5fa7eda74a69ab5b3d4163d807e4</act:id>
+  <act:type>PAYABLE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Accounts Payable</act:description>
+  <act:parent type="new">0ffc089ab128441e9cd1bd301a6868e7</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Accrued Expenses</act:name>
+  <act:id type="new">da4ad994765a44daaa7b21e5485e7c1a</act:id>
+  <act:type>LIABILITY</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Accrued expenses</act:description>
+  <act:parent type="new">0ffc089ab128441e9cd1bd301a6868e7</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Net Assets</act:name>
+  <act:id type="new">702ad4df6d7d46eebeddeab7bf454d8b</act:id>
+  <act:type>EQUITY</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Net assets (Form 990 Part X)</act:description>
+  <act:parent type="new">c79718558a9843d69435bf77cd60e224</act:parent>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Without Donor Restrictions</act:name>
+  <act:id type="new">06d5819ddbcb485c9793d2b25242aa28</act:id>
+  <act:type>EQUITY</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Unrestricted net assets</act:description>
+  <act:parent type="new">702ad4df6d7d46eebeddeab7bf454d8b</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>With Donor Restrictions — Temporary</act:name>
+  <act:id type="new">2604fe038f1e4050b45ea906c6a22899</act:id>
+  <act:type>EQUITY</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Temporarily restricted (purpose/time)</act:description>
+  <act:parent type="new">702ad4df6d7d46eebeddeab7bf454d8b</act:parent>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Program Restrictions</act:name>
+  <act:id type="new">1a5592ab5b8a4a0ba105cdb4f25a4b8f</act:id>
+  <act:type>EQUITY</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Purpose-restricted gifts</act:description>
+  <act:parent type="new">2604fe038f1e4050b45ea906c6a22899</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Other Temporary Restrictions</act:name>
+  <act:id type="new">65f80d939ebd4cc8a7bafa8b2b8a1f26</act:id>
+  <act:type>EQUITY</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Time or other temporary restrictions</act:description>
+  <act:parent type="new">2604fe038f1e4050b45ea906c6a22899</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>With Donor Restrictions — Permanent</act:name>
+  <act:id type="new">7f997063c9d04960bd520d38115c8c4e</act:id>
+  <act:type>EQUITY</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Permanently restricted / endowment corpus</act:description>
+  <act:parent type="new">702ad4df6d7d46eebeddeab7bf454d8b</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Income</act:name>
+  <act:id type="new">886a64f38adf4d138b5879af9bb65242</act:id>
+  <act:type>INCOME</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Support and revenue</act:description>
+  <act:parent type="new">c79718558a9843d69435bf77cd60e224</act:parent>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Contributions</act:name>
+  <act:id type="new">4e0f5c464a6b479199976a5b46e0f1a9</act:id>
+  <act:type>INCOME</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Contribution income</act:description>
+  <act:parent type="new">886a64f38adf4d138b5879af9bb65242</act:parent>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Unrestricted Contributions</act:name>
+  <act:id type="new">6bbbdde7fb524f10a783ac7811e1b590</act:id>
+  <act:type>INCOME</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Contributions without donor restrictions</act:description>
+  <act:parent type="new">4e0f5c464a6b479199976a5b46e0f1a9</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Temporarily Restricted Contributions</act:name>
+  <act:id type="new">760e33aebc294785bb2899cc0142c898</act:id>
+  <act:type>INCOME</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Contributions with temporary donor restrictions</act:description>
+  <act:parent type="new">4e0f5c464a6b479199976a5b46e0f1a9</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Permanently Restricted Contributions</act:name>
+  <act:id type="new">ac02f0a32ec146eea85fb9aaa4b4af0d</act:id>
+  <act:type>INCOME</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Contributions to permanent endowment</act:description>
+  <act:parent type="new">4e0f5c464a6b479199976a5b46e0f1a9</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Program Service Revenue</act:name>
+  <act:id type="new">87cab107f2e94c55a071f85eb66f8a92</act:id>
+  <act:type>INCOME</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Program service fees / revenue</act:description>
+  <act:parent type="new">886a64f38adf4d138b5879af9bb65242</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Investment Income</act:name>
+  <act:id type="new">080fa77abc434e9d9205d6a12804a9aa</act:id>
+  <act:type>INCOME</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Interest, dividends, realized gains (net)</act:description>
+  <act:parent type="new">886a64f38adf4d138b5879af9bb65242</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Other Revenue</act:name>
+  <act:id type="new">d31f38bf50e048dd98766901648035d8</act:id>
+  <act:type>INCOME</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Other revenue</act:description>
+  <act:parent type="new">886a64f38adf4d138b5879af9bb65242</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Expenses</act:name>
+  <act:id type="new">faf367a844984838beb6cbd446bd7997</act:id>
+  <act:type>EXPENSE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Functional expenses (Form 990 Part IX)</act:description>
+  <act:parent type="new">c79718558a9843d69435bf77cd60e224</act:parent>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Program Services</act:name>
+  <act:id type="new">73e84de64cdd43b6abec7dbcf4062372</act:id>
+  <act:type>EXPENSE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Program service expenses</act:description>
+  <act:parent type="new">faf367a844984838beb6cbd446bd7997</act:parent>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Program Salaries and Wages</act:name>
+  <act:id type="new">27c3077f216d456bb623afc5fb164d39</act:id>
+  <act:type>EXPENSE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Program personnel</act:description>
+  <act:parent type="new">73e84de64cdd43b6abec7dbcf4062372</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Program Other Expenses</act:name>
+  <act:id type="new">2e42c76a86d7456e8aa5cbba7ffe57dc</act:id>
+  <act:type>EXPENSE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Other program expenses</act:description>
+  <act:parent type="new">73e84de64cdd43b6abec7dbcf4062372</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Management and General</act:name>
+  <act:id type="new">a576c588d8384987ac857824dd963759</act:id>
+  <act:type>EXPENSE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Management and general</act:description>
+  <act:parent type="new">faf367a844984838beb6cbd446bd7997</act:parent>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Management Salaries and Wages</act:name>
+  <act:id type="new">1bb492419bfa40369b431c72b1fa9702</act:id>
+  <act:type>EXPENSE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Management personnel</act:description>
+  <act:parent type="new">a576c588d8384987ac857824dd963759</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Management Other Expenses</act:name>
+  <act:id type="new">8f2d2269790948a7b7767a345f58d922</act:id>
+  <act:type>EXPENSE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Other management expenses</act:description>
+  <act:parent type="new">a576c588d8384987ac857824dd963759</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Fundraising</act:name>
+  <act:id type="new">9e6bd682ef394cfe8e39ba67272c8646</act:id>
+  <act:type>EXPENSE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Fundraising expenses</act:description>
+  <act:parent type="new">faf367a844984838beb6cbd446bd7997</act:parent>
+  <act:slots>
+    <slot>
+      <slot:key>placeholder</slot:key>
+      <slot:value type="string">true</slot:value>
+    </slot>
+  </act:slots>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Fundraising Salaries and Wages</act:name>
+  <act:id type="new">df71e062924d4338ae6a95740b86652f</act:id>
+  <act:type>EXPENSE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Fundraising personnel</act:description>
+  <act:parent type="new">9e6bd682ef394cfe8e39ba67272c8646</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Fundraising Other Expenses</act:name>
+  <act:id type="new">62d544bb09924d25bb1fc8e93e390c73</act:id>
+  <act:type>EXPENSE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Other fundraising expenses</act:description>
+  <act:parent type="new">9e6bd682ef394cfe8e39ba67272c8646</act:parent>
+</gnc:account>
+<gnc:account version="2.0.0">
+  <act:name>Occupancy</act:name>
+  <act:id type="new">6637dbbc63e049f9870ee4a9eaba3b6f</act:id>
+  <act:type>EXPENSE</act:type>
+  <act:commodity>
+    <cmdty:space>ISO4217</cmdty:space>
+    <cmdty:id>USD</cmdty:id>
+  </act:commodity>
+  <act:commodity-scu>100</act:commodity-scu>
+  <act:description>Rent, utilities (allocate by function as needed)</act:description>
+  <act:parent type="new">faf367a844984838beb6cbd446bd7997</act:parent>
+</gnc:account>
+
+</gnc-account-example>

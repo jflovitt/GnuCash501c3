@@ -55,6 +55,7 @@
 #include "gnc-bill-term-sql.h"
 #include "gnc-customer-sql.h"
 #include "gnc-employee-sql.h"
+#include "gnc-donor-sql.h"
 #include "gnc-entry-sql.h"
 #include "gnc-invoice-sql.h"
 #include "gnc-job-sql.h"
@@ -1003,6 +1004,7 @@ GncSqlBackend::ObjectBackendRegistry::ObjectBackendRegistry()
     register_backend(std::make_shared<GncSqlBillTermBackend>());
     register_backend(std::make_shared<GncSqlCustomerBackend>());
     register_backend(std::make_shared<GncSqlEmployeeBackend>());
+    register_backend(std::make_shared<GncSqlDonorBackend>());
     register_backend(std::make_shared<GncSqlEntryBackend>());
     register_backend(std::make_shared<GncSqlInvoiceBackend>());
     register_backend(std::make_shared<GncSqlJobBackend>());

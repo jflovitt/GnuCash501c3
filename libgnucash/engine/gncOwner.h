@@ -50,6 +50,7 @@ typedef enum
     GNC_OWNER_JOB ,
     GNC_OWNER_VENDOR ,
     GNC_OWNER_EMPLOYEE ,
+    GNC_OWNER_DONOR ,
 } GncOwnerType;
 
 #include "qof.h"
@@ -57,6 +58,7 @@ typedef enum
 #include "gncJob.h"
 #include "gncVendor.h"
 #include "gncEmployee.h"
+#include "gncDonor.h"
 #include "gncInvoice.h"
 #include "Account.h"
 #include "gnc-lot.h"
@@ -103,6 +105,7 @@ struct _gncOwner
         GncJob *       job;
         GncVendor *    vendor;
         GncEmployee *  employee;
+        GncDonor *     donor;
     } owner;                   /**< holds the pointer to the owner object. */
     gpointer         qof_temp; /**< Set type independently of the owner. */
 };
@@ -117,6 +120,7 @@ void gncOwnerInitCustomer (GncOwner *owner, GncCustomer *customer);
 void gncOwnerInitJob (GncOwner *owner, GncJob *job);
 void gncOwnerInitVendor (GncOwner *owner, GncVendor *vendor);
 void gncOwnerInitEmployee (GncOwner *owner, GncEmployee *employee);
+void gncOwnerInitDonor (GncOwner *owner, GncDonor *donor);
 /** @} */
 /** \name Get routines.
 @{
@@ -142,6 +146,9 @@ GncVendor * gncOwnerGetVendor (const GncOwner *owner);
 /** If the given owner is of type GNC_OWNER_EMPLOYEE, returns the pointer
  * to the employee object. Otherwise returns NULL. */
 GncEmployee * gncOwnerGetEmployee (const GncOwner *owner);
+/** If the given owner is of type GNC_OWNER_DONOR, returns the pointer
+ * to the donor object. Otherwise returns NULL. */
+GncDonor * gncOwnerGetDonor (const GncOwner *owner);
 
 const char * gncOwnerGetID (const GncOwner *owner);
 const char * gncOwnerGetName (const GncOwner *owner);
@@ -327,6 +334,7 @@ gncOwnerGetBalanceInCurrency (const GncOwner *owner,
 #define OWNER_JOB         "job"
 #define OWNER_VENDOR      "vendor"
 #define OWNER_EMPLOYEE    "employee"
+#define OWNER_DONOR       "donor"
 #define OWNER_PARENT      "parent"
 #define OWNER_PARENTG     "parent-guid"
 #define OWNER_NAME        "name"

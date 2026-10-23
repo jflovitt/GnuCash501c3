@@ -594,6 +594,9 @@ gnc_tree_model_owner_get_value (GtkTreeModel *tree_model,
         default:
             g_value_set_static_string (value, "");
             break;
+        case GNC_OWNER_DONOR:
+            g_value_set_string (value, gncDonorGetNotes (gncOwnerGetDonor (owner)));
+            break;
         case GNC_OWNER_VENDOR:
             g_value_set_string (value, gncVendorGetNotes (gncOwnerGetVendor (owner)));
             break;

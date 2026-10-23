@@ -16,7 +16,8 @@ set(account_DATA
   acctchrt_renter.gnucash-xea
   acctchrt_retiremt.gnucash-xea
   acctchrt_spouseinc.gnucash-xea
-  acctchrt_spouseretire.gnucash-xea)
+  acctchrt_spouseretire.gnucash-xea
+  acctchrt_us_501c3.gnucash-xea)
 
 set_dist_list(C_DIST ${account_DATA} acctchrt_full.gnucash-xea CMakeLists.txt)
 

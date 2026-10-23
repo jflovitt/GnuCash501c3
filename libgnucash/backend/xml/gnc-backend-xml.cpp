@@ -86,6 +86,7 @@
 #include "gnc-bill-term-xml-v2.h"
 #include "gnc-customer-xml-v2.h"
 #include "gnc-employee-xml-v2.h"
+#include "gnc-donor-xml-v2.h"
 #include "gnc-entry-xml-v2.h"
 #include "gnc-invoice-xml-v2.h"
 #include "gnc-job-xml-v2.h"
@@ -173,6 +174,7 @@ business_core_xml_init (void)
     gnc_billterm_xml_initialize ();
     gnc_customer_xml_initialize ();
     gnc_employee_xml_initialize ();
+    gnc_donor_xml_initialize ();
     gnc_entry_xml_initialize ();
     gnc_invoice_xml_initialize ();
     gnc_job_xml_initialize ();

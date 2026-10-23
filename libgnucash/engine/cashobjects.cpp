@@ -41,6 +41,7 @@
 #include "gncBillTermP.h"
 #include "gncCustomerP.h"
 #include "gncEmployeeP.h"
+#include "gncDonorP.h"
 #include "gncEntryP.h"
 #include "gncInvoiceP.h"
 #include "gncJobP.h"
@@ -59,6 +60,7 @@ business_core_init(void)
     gncCustomerRegister ();
     gncAddressRegister ();
     gncEmployeeRegister ();
+    gncDonorRegister ();
     gncEntryRegister ();
     gncOrderRegister ();
     gncOwnerRegister ();
