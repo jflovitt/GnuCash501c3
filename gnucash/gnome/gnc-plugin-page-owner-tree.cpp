@@ -574,6 +574,11 @@ gnc_plugin_page_owner_tree_create_widget (GncPluginPage *plugin_page)
         state_section = "Employees Overview";
         style_label = "gnc-class-employees";
         break;
+    case GNC_OWNER_DONOR :
+        label = _("Donors");
+        state_section = "Donors Overview";
+        style_label = "gnc-class-donors";
+        break;
     }
 
     // Set a secondary style context for this page so it can be easily manipulated with css
@@ -760,6 +765,12 @@ static void gnc_ui_owner_edit (GtkWindow *parent, GncOwner *owner)
         gnc_ui_employee_edit (parent, owner->owner.employee);
         break;
     }
+    case GNC_OWNER_DONOR :
+    {
+        /* Donor edit dialog lands in a follow-up; keep switch exhaustive. */
+        PWARN ("Donor edit dialog not implemented yet");
+        break;
+    }
     }
 }
 
@@ -852,6 +863,7 @@ build_aging_report (GncOwnerType owner_type)
     case GNC_OWNER_NONE :
     case GNC_OWNER_UNDEFINED :
     case GNC_OWNER_EMPLOYEE :
+    case GNC_OWNER_DONOR :
     case GNC_OWNER_JOB :
     {
         return -1;
@@ -986,6 +998,12 @@ gnc_plugin_page_owner_tree_cmd_new_owner (GSimpleAction *simple,
     case GNC_OWNER_EMPLOYEE :
     {
         gnc_ui_employee_new (parent, gnc_get_current_book ());
+        break;
+    }
+
+    case GNC_OWNER_DONOR :
+    {
+        PWARN ("Donor new dialog not implemented yet");
         break;
     }
     }
@@ -1195,6 +1213,12 @@ gnc_plugin_page_owner_tree_cmd_new_invoice (GSimpleAction *simple,
     {
         gncOwnerInitEmployee(&current_owner,
                              gncOwnerGetEmployee(gnc_plugin_page_owner_tree_get_current_owner (plugin_page)));
+        break;
+    }
+    case GNC_OWNER_DONOR :
+    {
+        gncOwnerInitDonor(&current_owner,
+                          gncOwnerGetDonor(gnc_plugin_page_owner_tree_get_current_owner (plugin_page)));
         break;
     }
     }

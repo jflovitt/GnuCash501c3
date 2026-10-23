@@ -560,6 +560,7 @@ libgnucash/backend/sql/gnc-book-sql.cpp
 libgnucash/backend/sql/gnc-budget-sql.cpp
 libgnucash/backend/sql/gnc-commodity-sql.cpp
 libgnucash/backend/sql/gnc-customer-sql.cpp
+libgnucash/backend/sql/gnc-donor-sql.cpp
 libgnucash/backend/sql/gnc-employee-sql.cpp
 libgnucash/backend/sql/gnc-entry-sql.cpp
 libgnucash/backend/sql/gnc-invoice-sql.cpp
@@ -586,6 +587,7 @@ libgnucash/backend/xml/gnc-book-xml-v2.cpp
 libgnucash/backend/xml/gnc-budget-xml-v2.cpp
 libgnucash/backend/xml/gnc-commodity-xml-v2.cpp
 libgnucash/backend/xml/gnc-customer-xml-v2.cpp
+libgnucash/backend/xml/gnc-donor-xml-v2.cpp
 libgnucash/backend/xml/gnc-employee-xml-v2.cpp
 libgnucash/backend/xml/gnc-entry-xml-v2.cpp
 libgnucash/backend/xml/gnc-freqspec-xml-v2.cpp
@@ -639,6 +641,7 @@ libgnucash/engine/gnc-commodity.h
 libgnucash/engine/gncCustomer.c
 libgnucash/engine/gnc-date.cpp
 libgnucash/engine/gnc-datetime.cpp
+libgnucash/engine/gncDonor.c
 libgnucash/engine/gncEmployee.c
 libgnucash/engine/gnc-engine.cpp
 libgnucash/engine/gncEntry.c
@@ -651,6 +654,7 @@ libgnucash/engine/gnc-int128.cpp
 libgnucash/engine/gncInvoice.c
 libgnucash/engine/gncJob.c
 libgnucash/engine/gnc-lot.cpp
+libgnucash/engine/gnc-nonprofit.c
 libgnucash/engine/gnc-numeric.cpp
 libgnucash/engine/gnc-option.cpp
 libgnucash/engine/gnc-option-date.cpp

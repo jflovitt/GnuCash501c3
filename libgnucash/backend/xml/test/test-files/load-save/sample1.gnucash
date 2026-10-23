@@ -21,6 +21,7 @@
      xmlns:bt-prox="http://www.gnucash.org/XML/bt-prox"
      xmlns:cust="http://www.gnucash.org/XML/cust"
      xmlns:employee="http://www.gnucash.org/XML/employee"
+     xmlns:donor="http://www.gnucash.org/XML/donor"
      xmlns:entry="http://www.gnucash.org/XML/entry"
      xmlns:invoice="http://www.gnucash.org/XML/invoice"
      xmlns:job="http://www.gnucash.org/XML/job"

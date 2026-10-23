@@ -37,6 +37,7 @@
 
 #include "gncCustomerP.h"
 #include "gncEmployeeP.h"
+#include "gncDonorP.h"
 #include "gncJobP.h"
 #include "gncOwner.h"
 #include "gncOwnerP.h"
@@ -97,6 +98,12 @@ void gncOwnerBeginEdit (GncOwner *owner)
         gncEmployeeBeginEdit(owner->owner.employee);
         break;
     }
+
+    case GNC_OWNER_DONOR :
+    {
+        gncDonorBeginEdit(owner->owner.donor);
+        break;
+    }
     }
 }
 
@@ -128,6 +135,12 @@ void gncOwnerCommitEdit (GncOwner *owner)
         gncEmployeeCommitEdit(owner->owner.employee);
         break;
     }
+
+    case GNC_OWNER_DONOR :
+    {
+        gncDonorCommitEdit(owner->owner.donor);
+        break;
+    }
     }
 }
 
@@ -157,6 +170,12 @@ void gncOwnerDestroy (GncOwner *owner)
     case GNC_OWNER_EMPLOYEE :
     {
         gncEmployeeDestroy(owner->owner.employee);
+        break;
+    }
+
+    case GNC_OWNER_DONOR :
+    {
+        gncDonorDestroy(owner->owner.donor);
         break;
     }
     }
@@ -197,6 +216,13 @@ void gncOwnerInitEmployee (GncOwner *owner, GncEmployee *employee)
     owner->owner.employee = employee;
 }
 
+void gncOwnerInitDonor (GncOwner *owner, GncDonor *donor)
+{
+    if (!owner) return;
+    owner->type = GNC_OWNER_DONOR;
+    owner->owner.donor = donor;
+}
+
 GncOwnerType gncOwnerGetType (const GncOwner *owner)
 {
     if (!owner) return GNC_OWNER_NONE;
@@ -220,6 +246,9 @@ const char * gncOwnerGetTypeString (const GncOwner *owner)
         return N_("Vendor");
     case GNC_OWNER_EMPLOYEE:
         return N_("Employee");
+
+    case GNC_OWNER_DONOR:
+        return N_("Donor");
     default:
         PWARN ("Unknown owner type");
         return NULL;
@@ -267,6 +296,12 @@ QofIdTypeConst gncOwnerTypeToQofIdType(GncOwnerType t)
         type = GNC_ID_EMPLOYEE;
         break;
     }
+
+    case GNC_OWNER_DONOR :
+    {
+        type = GNC_ID_DONOR;
+        break;
+    }
     }
     return type;
 }
@@ -311,6 +346,11 @@ qofOwnerGetOwner (const GncOwner *owner)
         ent = QOF_INSTANCE(owner->owner.employee);
         break;
     }
+    case GNC_OWNER_DONOR :
+    {
+        ent = QOF_INSTANCE(owner->owner.donor);
+        break;
+    }
     }
     return ent;
 }
@@ -342,6 +382,11 @@ qofOwnerSetEntity (GncOwner *owner, QofInstance *ent)
         owner->type = GNC_OWNER_EMPLOYEE;
         gncOwnerInitEmployee(owner, (GncEmployee*)ent);
     }
+    else if (0 == g_strcmp0(ent->e_type, GNC_ID_DONOR))
+    {
+        owner->type = GNC_OWNER_DONOR;
+        gncOwnerInitDonor(owner, (GncDonor*)ent);
+    }
     else
     {
         owner->type = GNC_OWNER_NONE;
@@ -357,6 +402,7 @@ gboolean GNC_IS_OWNER (QofInstance *ent)
     return (GNC_IS_VENDOR(ent) ||
             GNC_IS_CUSTOMER(ent) ||
             GNC_IS_EMPLOYEE(ent) ||
+            GNC_IS_DONOR(ent) ||
             GNC_IS_JOB(ent));
 }
 gpointer gncOwnerGetUndefined (const GncOwner *owner)
@@ -392,6 +438,13 @@ GncEmployee * gncOwnerGetEmployee (const GncOwner *owner)
     if (!owner) return NULL;
     if (owner->type != GNC_OWNER_EMPLOYEE) return NULL;
     return owner->owner.employee;
+}
+
+GncDonor * gncOwnerGetDonor (const GncOwner *owner)
+{
+    if (!owner) return NULL;
+    if (owner->type != GNC_OWNER_DONOR) return NULL;
+    return owner->owner.donor;
 }
 
 void gncOwnerCopy (const GncOwner *src, GncOwner *dest)
@@ -433,6 +486,8 @@ const char * gncOwnerGetID (const GncOwner *owner)
         return gncVendorGetID (owner->owner.vendor);
     case GNC_OWNER_EMPLOYEE:
         return gncEmployeeGetID (owner->owner.employee);
+    case GNC_OWNER_DONOR:
+        return gncDonorGetID (owner->owner.donor);
     }
 }
 
@@ -453,6 +508,8 @@ const char * gncOwnerGetName (const GncOwner *owner)
         return gncVendorGetName (owner->owner.vendor);
     case GNC_OWNER_EMPLOYEE:
         return gncEmployeeGetName (owner->owner.employee);
+    case GNC_OWNER_DONOR:
+        return gncDonorGetName (owner->owner.donor);
     }
 }
 
@@ -472,6 +529,8 @@ GncAddress * gncOwnerGetAddr (const GncOwner *owner)
         return gncVendorGetAddr (owner->owner.vendor);
     case GNC_OWNER_EMPLOYEE:
         return gncEmployeeGetAddr (owner->owner.employee);
+    case GNC_OWNER_DONOR:
+        return gncDonorGetAddr (owner->owner.donor);
     }
 }
 
@@ -490,6 +549,8 @@ gnc_commodity * gncOwnerGetCurrency (const GncOwner *owner)
         return gncVendorGetCurrency (owner->owner.vendor);
     case GNC_OWNER_EMPLOYEE:
         return gncEmployeeGetCurrency (owner->owner.employee);
+    case GNC_OWNER_DONOR:
+        return gncDonorGetCurrency (owner->owner.donor);
     case GNC_OWNER_JOB:
         return gncOwnerGetCurrency (gncJobGetOwner (owner->owner.job));
     }
@@ -510,6 +571,8 @@ gboolean gncOwnerGetActive (const GncOwner *owner)
         return gncVendorGetActive (owner->owner.vendor);
     case GNC_OWNER_EMPLOYEE:
         return gncEmployeeGetActive (owner->owner.employee);
+    case GNC_OWNER_DONOR:
+        return gncDonorGetActive (owner->owner.donor);
     case GNC_OWNER_JOB:
         return gncJobGetActive (owner->owner.job);
     }
@@ -533,6 +596,8 @@ const GncGUID * gncOwnerGetGUID (const GncOwner *owner)
         return qof_instance_get_guid (QOF_INSTANCE(owner->owner.vendor));
     case GNC_OWNER_EMPLOYEE:
         return qof_instance_get_guid (QOF_INSTANCE(owner->owner.employee));
+    case GNC_OWNER_DONOR:
+        return qof_instance_get_guid (QOF_INSTANCE(owner->owner.donor));
     }
 }
 
@@ -550,6 +615,9 @@ gncOwnerSetActive (const GncOwner *owner, gboolean active)
         break;
     case GNC_OWNER_EMPLOYEE:
         gncEmployeeSetActive (owner->owner.employee, active);
+        break;
+    case GNC_OWNER_DONOR:
+        gncDonorSetActive (owner->owner.donor, active);
         break;
     case GNC_OWNER_JOB:
         gncJobSetActive (owner->owner.job, active);
@@ -581,6 +649,7 @@ const GncOwner * gncOwnerGetEndOwner (const GncOwner *owner)
     case GNC_OWNER_CUSTOMER:
     case GNC_OWNER_VENDOR:
     case GNC_OWNER_EMPLOYEE:
+    case GNC_OWNER_DONOR:
         return owner;
     case GNC_OWNER_JOB:
         return gncJobGetOwner (owner->owner.job);
@@ -608,6 +677,8 @@ int gncOwnerCompare (const GncOwner *a, const GncOwner *b)
         return gncVendorCompare (a->owner.vendor, b->owner.vendor);
     case GNC_OWNER_EMPLOYEE:
         return gncEmployeeCompare (a->owner.employee, b->owner.employee);
+    case GNC_OWNER_DONOR:
+        return gncDonorCompare (a->owner.donor, b->owner.donor);
     case GNC_OWNER_JOB:
         return gncJobCompare (a->owner.job, b->owner.job);
     }
@@ -658,6 +729,9 @@ gboolean gncOwnerGetOwnerFromLot (GNCLot *lot, GncOwner *owner)
         break;
     case GNC_OWNER_EMPLOYEE:
         gncOwnerInitEmployee (owner, gncEmployeeLookup (book, guid));
+        break;
+    case GNC_OWNER_DONOR:
+        gncOwnerInitDonor (owner, gncDonorLookup (book, guid));
         break;
     case GNC_OWNER_JOB:
         gncOwnerInitJob (owner, gncJobLookup (book, guid));
@@ -1448,6 +1522,7 @@ gncOwnerGetAccountTypesList (const GncOwner *owner)
     switch (gncOwnerGetType (owner))
     {
     case GNC_OWNER_CUSTOMER:
+    case GNC_OWNER_DONOR:
         return (g_list_prepend (NULL, (gpointer)ACCT_TYPE_RECEIVABLE));
     case GNC_OWNER_VENDOR:
     case GNC_OWNER_EMPLOYEE:
@@ -1612,6 +1687,7 @@ gboolean gncOwnerRegister (void)
         { OWNER_JOB, GNC_ID_JOB,           (QofAccessFunc)gncOwnerGetJob,           NULL },
         { OWNER_VENDOR, GNC_ID_VENDOR,     (QofAccessFunc)gncOwnerGetVendor,        NULL },
         { OWNER_EMPLOYEE, GNC_ID_EMPLOYEE, (QofAccessFunc)gncOwnerGetEmployee,      NULL },
+        { OWNER_DONOR, GNC_ID_DONOR,       (QofAccessFunc)gncOwnerGetDonor,         NULL },
         { OWNER_PARENT, GNC_ID_OWNER,      (QofAccessFunc)gncOwnerGetEndOwner,      NULL },
         { OWNER_PARENTG, QOF_TYPE_GUID,    (QofAccessFunc)gncOwnerGetEndGUID,       NULL },
         { OWNER_NAME, QOF_TYPE_STRING,     (QofAccessFunc)gncOwnerGetName, NULL },
@@ -1636,6 +1712,8 @@ gncOwnerGetCachedBalance (const GncOwner *owner)
         return gncVendorGetCachedBalance (gncOwnerGetVendor (owner));
     else if (gncOwnerGetType (owner) == GNC_OWNER_EMPLOYEE)
         return gncEmployeeGetCachedBalance (gncOwnerGetEmployee (owner));
+    else if (gncOwnerGetType (owner) == GNC_OWNER_DONOR)
+        return gncDonorGetCachedBalance (gncOwnerGetDonor (owner));
 
     return NULL;
 }
@@ -1650,4 +1728,6 @@ void gncOwnerSetCachedBalance (const GncOwner *owner, const gnc_numeric *new_bal
         gncVendorSetCachedBalance (gncOwnerGetVendor (owner), new_bal);
     else if (gncOwnerGetType (owner) == GNC_OWNER_EMPLOYEE)
         gncEmployeeSetCachedBalance (gncOwnerGetEmployee (owner), new_bal);
+    else if (gncOwnerGetType (owner) == GNC_OWNER_DONOR)
+        gncDonorSetCachedBalance (gncOwnerGetDonor (owner), new_bal);
 }

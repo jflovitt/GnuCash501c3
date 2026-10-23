@@ -11,6 +11,7 @@ set (backend_sql_SOURCES
   gnc-commodity-sql.cpp
   gnc-customer-sql.cpp
   gnc-employee-sql.cpp
+  gnc-donor-sql.cpp
   gnc-entry-sql.cpp
   gnc-invoice-sql.cpp
   gnc-job-sql.cpp
@@ -38,6 +39,7 @@ set (backend_sql_noinst_HEADERS
   gnc-commodity-sql.h
   gnc-customer-sql.h
   gnc-employee-sql.h
+  gnc-donor-sql.h
   gnc-entry-sql.h
   gnc-invoice-sql.h
   gnc-job-sql.h

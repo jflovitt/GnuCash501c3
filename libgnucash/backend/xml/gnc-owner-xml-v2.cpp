@@ -30,6 +30,7 @@
 #include "gncJobP.h"
 #include "gncVendorP.h"
 #include "gncEmployeeP.h"
+#include "gncDonorP.h"
 
 #include "gnc-xml-helper.h"
 #include "sixtp.h"
@@ -73,6 +74,9 @@ gnc_owner_to_dom_tree (const char* tag, const GncOwner* owner)
     case GNC_OWNER_EMPLOYEE:
         type_str = GNC_ID_EMPLOYEE;
         break;
+    case GNC_OWNER_DONOR:
+        type_str = GNC_ID_DONOR;
+        break;
     default:
         PWARN ("Invalid owner type: %d", gncOwnerGetType (owner));
         return NULL;
@@ -111,6 +115,8 @@ owner_type_handler (xmlNodePtr node, gpointer owner_pdata)
             gncOwnerInitVendor (owner, NULL);
         else if (!g_strcmp0 (txt, GNC_ID_EMPLOYEE))
             gncOwnerInitEmployee (owner, NULL);
+        else if (!g_strcmp0 (txt, GNC_ID_DONOR))
+            gncOwnerInitDonor (owner, NULL);
     };
     return apply_xmlnode_text (init_owner_type, owner, node);
 }
@@ -167,6 +173,17 @@ owner_id_handler (xmlNodePtr node, gpointer owner_pdata)
             gncEmployeeSetGUID (employee, &*guid);
         }
         gncOwnerInitEmployee (pdata->owner, employee);
+        break;
+    }
+    case GNC_OWNER_DONOR:
+    {
+        GncDonor* donor = gncDonorLookup (pdata->book, &*guid);
+        if (!donor)
+        {
+            donor = gncDonorCreate (pdata->book);
+            gncDonorSetGUID (donor, &*guid);
+        }
+        gncOwnerInitDonor (pdata->owner, donor);
         break;
     }
     default:

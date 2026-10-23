@@ -83,6 +83,9 @@ set (engine_HEADERS
   gncCustomerP.h
   gncEmployee.h
   gncEmployeeP.h
+  gncDonor.h
+  gncDonorP.h
+  gnc-nonprofit.h
   gncEntry.h
   gncEntryP.h
   gncIDSearch.h
@@ -183,6 +186,8 @@ set (engine_SOURCES
   gncBusiness.c
   gncCustomer.c
   gncEmployee.c
+  gncDonor.c
+  gnc-nonprofit.c
   gncEntry.c
   gncIDSearch.c
   gncInvoice.c
